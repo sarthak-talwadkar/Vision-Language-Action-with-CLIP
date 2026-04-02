@@ -63,7 +63,7 @@ The additional challenge addressed here is that **2D image features are insuffic
 │  feature lifting         │    │  embedding  e_t ∈ R^512     │
 │  → per-point CLIP        │    └──────────────┬──────────────┘
 │    feature field         │                   │
-│    F_3D ∈ R^{N×512}     │                   │
+│    F_3D ∈ R^{N×512}      │                   │ 
 └──────────────┬───────────┘                   │
                │                               │
                ▼                               │
@@ -82,7 +82,7 @@ The additional challenge addressed here is that **2D image features are insuffic
                │    Alignment + Fusion        │
                │                              │
                │  similarity = cos(e_v, e_t)  │
-               │  fused = [e_v ‖ e_t ‖ F_3D] │
+               │  fused = [e_v ‖ e_t ‖ F_3D]  │
                │  → joint embedding R^{1536+} │
                └──────────────┬───────────────┘
                               │
