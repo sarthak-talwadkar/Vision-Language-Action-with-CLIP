@@ -1,0 +1,86 @@
+# ============================================================
+# VLA with CLIP-RT — requirements.txt
+# ============================================================
+# Install in order:
+#   pip install -r requirements.txt
+#
+# GPU note: This project requires a CUDA-capable GPU.
+#   Install PyTorch first from https://pytorch.org/get-started/locally/
+#   to get the correct CUDA version for your system, e.g.:
+#   pip install torch==2.1.0 torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cu121
+
+# ============================================================
+# Core deep learning
+# ============================================================
+torch>=2.1.0
+torchvision>=0.16.0
+
+# ============================================================
+# OpenCLIP — provides ViT-H-14-378-quickgelu + action decoder
+# Install from the local fork (in ./open_clip/) which includes
+# the use_action_decoder=True flag and action head:
+#   pip install -e ./open_clip
+# Or from source:
+#   pip install git+https://github.com/mlfoundations/open_clip.git
+# ============================================================
+# open_clip_torch>=2.24.0  # uncomment if not using local fork
+
+# ============================================================
+# Computer vision & image processing
+# ============================================================
+Pillow>=10.0.0           # PIL image loading and manipulation
+numpy>=1.24.0            # numerical arrays
+scipy>=1.11.0            # quaternion math, spatial transforms
+matplotlib>=3.7.0        # heatmap overlays (smoke test) and result figures
+open3d>=0.17.0           # 3D point cloud operations (optional, for visualisation)
+
+# ============================================================
+# Data pipeline
+# ============================================================
+h5py>=3.9.0              # HDF5 demonstration file storage
+tqdm>=4.66.0             # progress bars
+
+# ============================================================
+# Training utilities
+# ============================================================
+# Mixed precision, already bundled with PyTorch (torch.amp)
+tensorboard>=2.14.0      # training curve logging
+# Or wandb (alternative logger):
+# wandb>=0.16.0
+
+# ============================================================
+# LIBERO evaluation (optional — only needed for LIBERO benchmark)
+# Install LIBERO separately:
+#   git clone https://github.com/Lifelong-Robot-Learning/LIBERO
+#   pip install -e LIBERO/
+# ============================================================
+# libero is not on PyPI — install manually from source
+
+# ============================================================
+# LIBERO data pipeline dependencies (from libero/libero_requirements.txt)
+# ============================================================
+draccus>=0.5.0           # dataclass-based config parsing (used in run_libero_eval)
+imageio>=2.31.0          # video writing for rollout replay
+imageio-ffmpeg>=0.4.9    # MP4 encoding backend
+tensorflow>=2.14.0       # LIBERO image resizing pipeline (tf.image.resize)
+
+# ============================================================
+# Open-X Embodiment pretraining (optional — only for pretrain/)
+# ============================================================
+tensorflow-datasets>=4.9.0  # RLDS dataset loading
+# dlimp — OpenVLA's tf.data wrapper:
+#   pip install git+https://github.com/kvablack/dlimp.git
+
+# ============================================================
+# Isaac Sim (optional — only for env/isaac_sim.py)
+# Isaac Sim installs its own Python environment.
+# After installing Isaac Sim 2023.1+, run:
+#   /path/to/isaac-sim/python.sh -m pip install -r requirements.txt
+# The omni.isaac.* packages are bundled with Isaac Sim.
+# ============================================================
+
+# ============================================================
+# Optional: teleoperation controller
+# ============================================================
+# pyspacemouse>=1.0.0    # SpaceMouse 6-DOF input
+# keyboard>=0.13.5       # keyboard teleop fallback

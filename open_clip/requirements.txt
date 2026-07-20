@@ -1,5 +1,9 @@
-torch==2.5.1
-torchvision==0.20.1
+# Relaxed from the upstream pins (torch==2.5.1, torchvision==0.20.1): those
+# exact pins would DOWNGRADE a CUDA build (e.g. torch 2.11+cu128 needed for
+# RTX 50-series / Blackwell) back to CPU on any `pip install -e open_clip`.
+# The fork works fine on newer torch; keep a floor, not an exact pin.
+torch>=2.5.1
+torchvision>=0.20.1
 regex
 ftfy
 tqdm
